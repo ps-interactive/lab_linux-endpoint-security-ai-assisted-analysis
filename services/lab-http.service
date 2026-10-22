@@ -1,0 +1,19 @@
+[Unit]
+Description=Lab HTTP training service (harmless local python http.server)
+After=network.target
+Documentation=file:///opt/linux-ai-security-lab/README.txt
+
+[Service]
+Type=simple
+User=learner
+Group=learner
+WorkingDirectory=/opt/lab-services
+ExecStart=/usr/bin/python3 -m http.server 8080 --bind 127.0.0.1
+Restart=on-failure
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=lab-http
+
+[Install]
+WantedBy=multi-user.target

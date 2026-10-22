@@ -1,0 +1,12 @@
+Mar 10 09:14:01 labhost sshd[1201]: Accepted publickey for learner from 192.0.2.25 port 51822 ssh2
+Mar 10 09:14:05 labhost sudo: learner : TTY=pts/0 ; PWD=/home/learner ; USER=root ; COMMAND=/usr/bin/systemctl status ssh
+Mar 10 09:15:11 labhost sshd[1244]: Failed password for invalid user admin from 203.0.113.50 port 44122 ssh2
+Mar 10 09:15:13 labhost sshd[1246]: Failed password for invalid user admin from 203.0.113.50 port 44124 ssh2
+Mar 10 09:15:15 labhost sshd[1248]: Failed password for invalid user admin from 203.0.113.50 port 44126 ssh2
+Mar 10 09:15:18 labhost sshd[1250]: Failed password for invalid user admin from 203.0.113.50 port 44128 ssh2
+Mar 10 09:15:21 labhost sshd[1252]: Failed password for invalid user admin from 203.0.113.50 port 44130 ssh2
+Mar 10 09:16:02 labhost sshd[1301]: Accepted password for learner from 192.0.2.25 port 51901 ssh2
+Mar 10 09:16:10 labhost sudo: learner : TTY=pts/0 ; PWD=/home/learner ; USER=root ; COMMAND=/usr/bin/journalctl -n 50
+Mar 10 09:17:44 labhost sshd[1333]: Failed password for invalid user root from 198.51.100.77 port 50211 ssh2
+Mar 10 09:18:01 labhost CRON[1402]: (root) CMD (cd / && run-parts --report /etc/cron.hourly)
+Mar 10 09:20:12 labhost sudo: learner : TTY=pts/1 ; PWD=/opt/linux-ai-security-lab ; USER=root ; COMMAND=/usr/bin/ss -tulnp

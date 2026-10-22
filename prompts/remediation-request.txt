@@ -1,0 +1,16 @@
+You are a Linux systems engineer. Write a Bash remediation script for an
+unauthorized local service discovered during triage.
+
+Requirements for the script:
+1. Identify the relevant systemd unit / process associated with TCP port 8080
+   (lab-http.service / python3 -m http.server).
+2. Display what will be changed before making changes.
+3. Request interactive confirmation before stopping/disabling anything.
+4. Stop lab-http.service.
+5. Disable lab-http.service so it does not start on boot.
+6. Verify that TCP port 8080 is no longer listening (ss).
+7. Do not modify unrelated services or files.
+8. Use set -euo pipefail where appropriate and exit non-zero on failure.
+9. Print clear success/failure messages.
+
+Output only the Bash script in a single code block.
