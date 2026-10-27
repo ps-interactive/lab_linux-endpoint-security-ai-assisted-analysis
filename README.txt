@@ -1,7 +1,7 @@
 Linux Endpoint Security: AI-Assisted Analysis Lab
 =================================================
 
-Workflow: Collect -> Minimize -> Sanitize -> Analyse -> Remediate -> Verify
+Workflow: Collect -> Minimize -> Sanitize -> Analyze -> Remediate -> Verify
 
 Directories:
   telemetry/     Synthetic and live-collected endpoint data
@@ -11,9 +11,12 @@ Directories:
   examples/      Known-good reference scripts (use as reference if AI draft is wrong)
 
 Local LLM — GPT4All with the Qwen model is preinstalled (nothing to download).
-Build a ready-to-paste prompt:
+Build a prompt bundle:
   build-ai-prompt.sh anomaly
   build-ai-prompt.sh remediation
+Send it to the model (a response can take up to about five minutes):
+  ask-ai.sh anomaly
+  ask-ai.sh remediation
 
 Useful investigation commands:
   ps aux
