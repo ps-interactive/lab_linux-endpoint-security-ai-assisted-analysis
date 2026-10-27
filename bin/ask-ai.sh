@@ -2,7 +2,7 @@
 # Send a lab prompt to the local GPT4All + Qwen model and save the response.
 #   ask-ai.sh anomaly      builds the anomaly bundle, saves remediation/ai-anomaly-analysis.txt
 #   ask-ai.sh remediation  builds the remediation bundle, saves remediation/ai-remediation-raw.txt
-# The model runs on the CPU, so a response can take up to about five minutes.
+# The model runs on the CPU, so a response can take up to about ten minutes.
 set -euo pipefail
 
 LAB=/opt/linux-ai-security-lab
@@ -40,7 +40,7 @@ text = ""
 printed = 0
 stopped = False
 with model.chat_session():
-    for token in model.generate(prompt, max_tokens=1500, temp=0.2, streaming=True):
+    for token in model.generate(prompt, max_tokens=700, temp=0.2, streaming=True):
         text += token
         cuts = [text.find(m) for m in markers if m in text]
         if cuts:

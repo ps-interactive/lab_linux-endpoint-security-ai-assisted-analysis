@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Build a single prompt file for the local Qwen model (send it with ask-ai.sh).
-#   build-ai-prompt.sh anomaly      # anomaly-analysis prompt + every file in sanitized/
+#   build-ai-prompt.sh anomaly      # anomaly-analysis prompt + sanitized auth, syslog, journal
 #   build-ai-prompt.sh remediation  # remediation-request prompt
 set -euo pipefail
 
@@ -10,16 +10,19 @@ mode="${1:-}"
 case "$mode" in
   anomaly)
     out="$LAB/prompts/anomaly-bundle.txt"
-    shopt -s nullglob
-    files=("$LAB"/sanitized/*)
-    if [[ ${#files[@]} -eq 0 ]]; then
-      echo "No files in $LAB/sanitized/ - complete the sanitize steps first." >&2
-      exit 1
-    fi
+    # Only these three files are sent. The full process list is too large for the
+    # model's context window and is not needed for the analysis.
+    files=(auth-sample.sanitized.log syslog-sample.sanitized.log lab-http.journal.sanitized.txt)
+    for name in "${files[@]}"; do
+      if [[ ! -f "$LAB/sanitized/$name" ]]; then
+        echo "Missing $LAB/sanitized/$name - complete the sanitize steps first." >&2
+        exit 1
+      fi
+    done
     cat "$LAB/prompts/anomaly-analysis.txt" >"$out"
-    for f in "${files[@]}"; do
-      printf '\n\n===== %s =====\n' "$(basename "$f")" >>"$out"
-      cat "$f" >>"$out"
+    for name in "${files[@]}"; do
+      printf '\n\n===== %s =====\n' "$name" >>"$out"
+      cat "$LAB/sanitized/$name" >>"$out"
     done
     ;;
   remediation)
